@@ -12,6 +12,7 @@
     "ant-design-vue": "^1.7.2",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "husky": "^4.3.6",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
@@ -78,5 +79,11 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  }
 }
