@@ -1,0 +1,15 @@
+language: node
+node: 14
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+before_install:
+  - npm install -g npm@6
+
+install: -npm install
+
+script:
+  - npm run lint
