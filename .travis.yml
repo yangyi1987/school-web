@@ -9,7 +9,8 @@ cache:
 before_install:
   - npm install -g npm@6
 
-install: -npm install
+install:
+  - npm install
 
 script:
   - npm run lint
