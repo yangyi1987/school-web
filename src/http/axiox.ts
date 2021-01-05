@@ -1,5 +1,4 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
-import { config } from "vue/types/umd";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.common["Authorization"] = "12132";
@@ -24,8 +23,12 @@ export function post(
 }
 
 // patch 方法
-export function update(url: string, params: any, config?: AxiosRequestConfig): Promise<AxiosPromise> {
-  return axios.patch(url, params, config)
+export function update(
+  url: string,
+  params: any,
+  config?: AxiosRequestConfig
+): Promise<AxiosPromise> {
+  return axios.patch(url, params, config);
 }
 
 // delete 方法
