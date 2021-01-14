@@ -1,16 +1,20 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
-
-axios.defaults.baseURL = "http://localhost:3000";
-axios.defaults.headers.common["Authorization"] = "12132";
-axios.defaults.headers.post["Content-Type"] =
-  "application/x-www-form-urlencoded";
+const user = JSON.parse(localStorage.getItem("user"));
+const server = axios.create({
+  baseURL: "http://localhost:3000",
+  timeout: 3000,
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `${user.token || ""}`
+  }
+});
 
 // get 方法
 export function get(
   url: string,
   config?: AxiosRequestConfig
 ): Promise<AxiosPromise> {
-  return axios.get(url, config);
+  return server.get(url, config);
 }
 
 // post 方法
@@ -19,7 +23,7 @@ export function post(
   params?: Record<string, any> | number | string,
   config?: AxiosRequestConfig
 ): Promise<AxiosPromise> {
-  return axios.post(url, params, config);
+  return server.post(url, params, config);
 }
 
 // patch 方法
@@ -28,10 +32,10 @@ export function update(
   params: any,
   config?: AxiosRequestConfig
 ): Promise<AxiosPromise> {
-  return axios.patch(url, params, config);
+  return server.patch(url, params, config);
 }
 
 // delete 方法
 export function remove(url: string, config?: AxiosRequestConfig) {
-  return axios.delete(url, config);
+  return server.delete(url, config);
 }

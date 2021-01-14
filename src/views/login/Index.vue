@@ -40,10 +40,17 @@ export default class LoginIndex extends Vue {
   private onSubmit(): void {
     (this.$refs.ruleForm as any).validate(async (valid: any) => {
       if (valid) {
-        // // this.$router.push({ path: "/" });
-        // const data = await login(this.formInline);
-        // console.log(data)
-        login(this.formInline);
+        login(this.formInline)
+          .then((result: any) => {
+            localStorage.setItem(
+              "user",
+              JSON.stringify({ token: result.token, userInfo: result.record })
+            );
+            this.$router.replace("/");
+          })
+          .catch((err: Error) => {
+            console.log(err);
+          });
       } else {
         return false;
       }
